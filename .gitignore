@@ -1,0 +1,8 @@
+# Dart tooling
+tools/.dart_tool/
+tools/pubspec.lock
+tools/*.exe
+
+# OS junk
+Thumbs.db
+.DS_Store

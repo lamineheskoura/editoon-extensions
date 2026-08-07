@@ -1,0 +1,18 @@
+{
+  "slug": "progress",
+  "name": "مؤشر التقدم",
+  "version": "1.0.0",
+  "icon": "icon.png",
+  "minApi": 1,
+  "description": "إضافة تجريبية خارجية: تتبّع إنجازك في الفصل الحالي (صفحات منجزة) مباشرة من لوحة داخل المحرر.",
+  "author": "HunterToon",
+  "homepage": "https://github.com/lamineheskoura/editoon-extensions",
+  "panel": {
+    "movable": true,
+    "closable": true,
+    "width": 280,
+    "height": 300,
+    "x": 0.82,
+    "y": 0.15
+  }
+}

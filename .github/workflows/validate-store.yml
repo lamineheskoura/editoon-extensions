@@ -1,0 +1,30 @@
+name: validate-store
+
+on:
+  push:
+    paths:
+      - 'store/**'
+  pull_request:
+    paths:
+      - 'store/**'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: store
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate store structure and catalog
+        shell: pwsh
+        run: |
+          .\tools\validate_store.ps1
+          if (-not $?) { exit 1 }
+      - name: Catalog is deterministic (rebuild produces no diff)
+        shell: pwsh
+        run: |
+          .\tools\rebuild_catalog.ps1
+          if (git status --porcelain catalog.json) { Write-Error "catalog.json is stale - run .\tools\rebuild_catalog.ps1"; exit 1 }
+          Write-Host 'catalog.json is up to date'

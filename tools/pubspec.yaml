@@ -1,0 +1,9 @@
+name: huntertoon_extensions_tools
+description: Dev-only tooling for the HunterToon extension store (icon generator).
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  image: ^4.2.0

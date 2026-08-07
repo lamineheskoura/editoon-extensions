@@ -1,0 +1,19 @@
+{
+    "version":  1,
+    "catalogVersion":  "1.0.0",
+    "updatedAt":  "2026-08-07",
+    "extensions":  [
+                       {
+                           "slug":  "progress",
+                           "name":  "مؤشر التقدم",
+                           "description":  "إضافة تجريبية خارجية: تتبّع إنجازك في الفصل الحالي (صفحات منجزة) مباشرة من لوحة داخل المحرر.",
+                           "author":  "HunterToon",
+                           "version":  "1.0.0",
+                           "minApi":  1,
+                           "archiveUrl":  "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/progress/progress-1.0.0.zip",
+                           "iconUrl":  "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/progress/icon.png",
+                           "sizeBytes":  1808,
+                           "sha256":  "67B93813B1F397D7D4073C6E43823D7BC1E121EC7D1D2E0DC5998EFF655D3CC1"
+                       }
+                   ]
+}
