@@ -11,9 +11,9 @@
       "version": "1.0.0",
       "minApi": 1,
       "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/image-overlay/image-overlay-1.0.0.zip",
-      "iconUrl": "",
-      "sizeBytes": 3056,
-      "sha256": "4614D8EC716C2741EE4CF00CBA458F855CAE10BCBFEB513BE2DC8AC5FDC4043F"
+      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/image-overlay/icon.png",
+      "sizeBytes": 3984,
+      "sha256": "ADF41BB0DB46BFC33F0D10EFBEB6E199CEBB908221141D876B59748D45EC3813"
     },
     {
       "slug": "progress",
