@@ -1,0 +1,1 @@
+{"slug": "typesetting", "name": "ترجمة وتوزيع", "version": "1.0.0", "icon": "icon.png", "minApi": 1, "description": "توزيع نص الفصل على صناديق الحوار تلقائياً مع ضبط الخط — إضافة HunterToon الرسمية.", "author": "HunterToon", "homepage": "", "panel": {"movable": true, "closable": true, "width": 320, "height": 360}}

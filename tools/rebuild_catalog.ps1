@@ -3,6 +3,8 @@
 # requirements per package:
 #   packages/<slug>/manifest.json        (v2: slug/name/version/minApi/description/author)
 #   packages/<slug>/<slug>-<version>.zip (from build_extension.ps1 or a GitHub Release asset)
+# NOTE: the JSON is emitted by hand (fixed key order, LF line endings, no BOM) so the
+# output is byte-identical on Windows PowerShell 5.1, pwsh 7, and any CI runner.
 param(
   [string]$BaseUrl = 'https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main'
 )
@@ -13,6 +15,16 @@ $packagesDir = Join-Path $root 'packages'
 
 if (-not (Test-Path -LiteralPath $packagesDir)) {
   throw "missing $packagesDir"
+}
+
+function ConvertTo-JsonString([string]$Value) {
+  if ($null -eq $Value) { return '""' }
+  return '"' + $Value.Replace('\', '\\').Replace('"', '\"') + '"'
+}
+
+$nl = "`n"
+function AppendLine([System.Text.StringBuilder]$Sb, [string]$Text) {
+  [void]$Sb.Append($Text).Append($nl)
 }
 
 $entries = @()
@@ -53,14 +65,33 @@ Get-ChildItem -LiteralPath $packagesDir -Directory | Sort-Object Name | ForEach-
   }
 }
 
-$catalog = [ordered]@{
-  version        = 1
-  catalogVersion = '1.0.0'
-  updatedAt      = (Get-Date -Format 'yyyy-MM-dd')
-  extensions     = $entries
+$updatedAt = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd')
+
+$sb = [System.Text.StringBuilder]::new()
+AppendLine $sb '{'
+AppendLine $sb '  "version": 1,'
+AppendLine $sb '  "catalogVersion": "1.0.0",'
+AppendLine $sb "  `"updatedAt`": `"$updatedAt`","
+AppendLine $sb '  "extensions": ['
+for ($i = 0; $i -lt $entries.Count; $i++) {
+  $e = $entries[$i]
+  $comma = if ($i -lt $entries.Count - 1) { ',' } else { '' }
+AppendLine $sb '    {'
+  AppendLine $sb ('      "slug": ' + (ConvertTo-JsonString $e.slug) + ',')
+  AppendLine $sb ('      "name": ' + (ConvertTo-JsonString $e.name) + ',')
+  AppendLine $sb ('      "description": ' + (ConvertTo-JsonString $e.description) + ',')
+  AppendLine $sb ('      "author": ' + (ConvertTo-JsonString $e.author) + ',')
+  AppendLine $sb ('      "version": ' + (ConvertTo-JsonString $e.version) + ',')
+  AppendLine $sb ("      `"minApi`": $($e.minApi),")
+  AppendLine $sb ('      "archiveUrl": ' + (ConvertTo-JsonString $e.archiveUrl) + ',')
+  AppendLine $sb ('      "iconUrl": ' + (ConvertTo-JsonString $e.iconUrl) + ',')
+  AppendLine $sb ("      `"sizeBytes`": $($e.sizeBytes),")
+  AppendLine $sb ("      `"sha256`": `"$($e.sha256)`"")
+  AppendLine $sb "    }$comma"
 }
+AppendLine $sb '  ]'
+AppendLine $sb '}'
 
 $out = Join-Path $root 'catalog.json'
-$json = $catalog | ConvertTo-Json -Depth 6
-[System.IO.File]::WriteAllText($out, $json + [Environment]::NewLine, [System.Text.UTF8Encoding]::new($false))
+[System.IO.File]::WriteAllText($out, $sb.ToString(), [System.Text.UTF8Encoding]::new($false))
 Write-Host "catalog.json rebuilt: $($entries.Count) extension(s) -> $out"

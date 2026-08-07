@@ -1,55 +1,43 @@
 {
-    "version":  1,
-    "catalogVersion":  "1.0.0",
-    "updatedAt":  "2026-08-07",
-    "extensions":  [
-                       {
-                           "slug":  "batch-crop",
-                           "name":  "قص بالجملة",
-                           "description":  "إضافة تقصّ وثيقة عبر أربع مناطق تلقائياً (api.tool.crop) وتدعم التراجع لكل منطقة.",
-                           "author":  "HunterToon",
-                           "version":  "1.0.0",
-                           "minApi":  2,
-                           "archiveUrl":  "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/batch-crop/batch-crop-1.0.0.zip",
-                           "iconUrl":  "",
-                           "sizeBytes":  1227,
-                           "sha256":  "B928F10943117391087CBBAA33E11A866AB6B1D9F9F699273E443BAA7FD9969A"
-                       },
-                       {
-                           "slug":  "progress",
-                           "name":  "مؤشر التقدم",
-                           "description":  "إضافة تجريبية خارجية: تتبّع إنجازك في الفصل الحالي (صفحات منجزة) مباشرة من لوحة داخل المحرر.",
-                           "author":  "HunterToon",
-                           "version":  "1.0.0",
-                           "minApi":  1,
-                           "archiveUrl":  "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/progress/progress-1.0.0.zip",
-                           "iconUrl":  "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/progress/icon.png",
-                           "sizeBytes":  1819,
-                           "sha256":  "CBAC311A69A13CA474ADE51813AB80780B3CDCED5ADCF8168F5CBDAFB45319B7"
-                       },
-                       {
-                           "slug":  "scripted-brush",
-                           "name":  "فرشاة مبرمجة",
-                           "description":  "إضافة ترسم نمط «مشط» مبرمجاً من عدة ضربات فرشاة داخل خطوة تراجع واحدة، عبر api.tool.*.",
-                           "author":  "HunterToon",
-                           "version":  "1.0.0",
-                           "minApi":  2,
-                           "archiveUrl":  "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/scripted-brush/scripted-brush-1.0.0.zip",
-                           "iconUrl":  "",
-                           "sizeBytes":  1366,
-                           "sha256":  "D11272B2B2958183C9F941A35E9AF1BD3E35A94C19A1D5858C18AF65923D035D"
-                       },
-                       {
-                           "slug":  "watermark",
-                           "name":  "علامة مائية",
-                           "description":  "إضافة تضع نصاً كعلامة مائية مع شفافية وقفل، وتحفظ وصفاً عبر api.io.write_text، مع تراجع كامل.",
-                           "author":  "HunterToon",
-                           "version":  "1.0.0",
-                           "minApi":  2,
-                           "archiveUrl":  "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/watermark/watermark-1.0.0.zip",
-                           "iconUrl":  "",
-                           "sizeBytes":  1614,
-                           "sha256":  "0F60B69167844291FC1EE629C351F0DCAC0180C9C6A2C055C69B8B356DDE2A79"
-                       }
-                   ]
+  "version": 1,
+  "catalogVersion": "1.0.0",
+  "updatedAt": "2026-08-07",
+  "extensions": [
+    {
+      "slug": "image-overlay",
+      "name": "صورة فوق صورة",
+      "description": "وضع صورة فوق الصفحة مع تحكم كامل (تحريك/تكبير/تدوير) ودمج قابل للتراجع — إضافة HunterToon الرسمية.",
+      "author": "HunterToon",
+      "version": "1.0.0",
+      "minApi": 1,
+      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/image-overlay/image-overlay-1.0.0.zip",
+      "iconUrl": "",
+      "sizeBytes": 3056,
+      "sha256": "4614D8EC716C2741EE4CF00CBA458F855CAE10BCBFEB513BE2DC8AC5FDC4043F"
+    },
+    {
+      "slug": "progress",
+      "name": "مؤشر التقدم",
+      "description": "إضافة تجريبية خارجية: تتبّع إنجازك في الفصل الحالي (صفحات منجزة) مباشرة من لوحة داخل المحرر.",
+      "author": "HunterToon",
+      "version": "1.0.0",
+      "minApi": 1,
+      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/progress/progress-1.0.0.zip",
+      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/progress/icon.png",
+      "sizeBytes": 1819,
+      "sha256": "CBAC311A69A13CA474ADE51813AB80780B3CDCED5ADCF8168F5CBDAFB45319B7"
+    },
+    {
+      "slug": "typesetting",
+      "name": "ترجمة وتوزيع",
+      "description": "توزيع نص الفصل على صناديق الحوار تلقائياً مع ضبط الخط — إضافة HunterToon الرسمية.",
+      "author": "HunterToon",
+      "version": "1.0.0",
+      "minApi": 1,
+      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/typesetting/typesetting-1.0.0.zip",
+      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/typesetting/icon.png",
+      "sizeBytes": 7469,
+      "sha256": "C47178778CE5CF47ED74ADA978069615AD78118C851755C54016BAF325A79598"
+    }
+  ]
 }

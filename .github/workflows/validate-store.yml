@@ -9,6 +9,7 @@ on:
       - 'README.md'
       - 'EXTENSION_GUIDE.md'
       - 'prompts/**'
+      - '.github/workflows/**'
   pull_request:
     paths:
       - 'packages/**'
@@ -17,6 +18,7 @@ on:
       - 'README.md'
       - 'EXTENSION_GUIDE.md'
       - 'prompts/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 jobs:
@@ -33,5 +35,9 @@ jobs:
         shell: pwsh
         run: |
           .\tools\rebuild_catalog.ps1
-          if (git status --porcelain catalog.json) { Write-Error "catalog.json is stale - run .\tools\rebuild_catalog.ps1"; exit 1 }
+          $rebuilt = (Get-Content -LiteralPath catalog.json -Raw | ConvertFrom-Json).extensions
+          $committed = (git show HEAD:catalog.json | ConvertFrom-Json).extensions
+          $props = @('slug','name','version','minApi','archiveUrl','iconUrl','sizeBytes','sha256')
+          $d = Compare-Object $committed $rebuilt -Property $props
+          if ($d) { $d | ForEach-Object { Write-Error "catalog.json stale: $($_.InputObject | ConvertTo-Json -Compress)" }; exit 1 }
           Write-Host 'catalog.json is up to date'

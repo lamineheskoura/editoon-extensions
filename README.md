@@ -60,10 +60,9 @@ editoon-extensions
 ├── .github/workflows/validate-store.yml  ← تحقق آلي (CI) عند كل تحديث
 ├── tools/…                       ← أدوات البناء والتحقق
 └── packages/
-    ├── progress/                 ← عينة أولية «مؤشر التقدم»
-    ├── scripted-brush/           ← نموذج O5: فرشاة مبرمجة (مشط)
-    ├── batch-crop/               ← نموذج O5: قص بالجملة
-    └── watermark/                ← نموذج O5: علامة مائية ذكية
+    ├── progress/                 ← «مؤشر التقدم» — عينة أولية
+    ├── image-overlay/            ← «صورة فوق صورة» — الرسمية
+    └── typesetting/              ← «ترجمة وتوزيع» — الرسمية
 ```
 
 **القاعدة الذهبية:** `catalog.json` هو **مخرج آلي** — أعده توليداً من مجلدات `packages/` بأداة `rebuild_catalog.ps1`؛ لا تعدّله يدوياً. لكل إضافة مجلدها في `packages/<slug>/` — تغيير إضافة لا يمس سوى مجلدها.

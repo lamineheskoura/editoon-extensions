@@ -73,12 +73,12 @@ packages/<slug>/
 
 ```json
 {
-  "slug": "scripted-brush",
-  "name": "فرشاة مبرمجة",
+  "slug": "typesetting",
+  "name": "ترجمة وتوزيع",
   "version": "1.0.0",
   "icon": "icon.png",
-  "minApi": 2,
-  "description": "ترسم نمط مشط مبرمج",
+  "minApi": 1,
+  "description": "توزيع النص على الصناديق تلقائياً",
   "author": "HunterToon",
   "homepage": "https://github.com/lamineheskoura/editoon-extensions",
   "capabilities": ["doc:read", "tools:brush", "layers:read", "history:write"],
@@ -354,12 +354,12 @@ ctx = {
 
 | الحزمة | ماذا تفعل | النمط |
 |---|---|---|
-| `scripted-brush` | نمط «مشط» من عدة ضربات في group (Undo واحد) | أتمتة + تجميع |
-| `batch-crop` | قصّ الأرباع تلقائياً | معالجة بالجملة |
-| `watermark` | علامة مائية: قراءة `ctx.layers` + شفافة/قفل + حفظ | قراءة + تعديل + حفظ |
+| `progress` | «مؤشر التقدم»: عدّاد بسيط لتتبع صفحات الفصل | أتمتة + IO خفيف |
+| `image-overlay` | «صورة فوق صورة»: وضع صورة فوق الصفحة مع دمج وتراجع | طبقات + تراجع |
+| `typesetting` | «ترجمة وتوزيع»: توزيع النص على الصناديق تلقائياً مع ضبط الخط | معالجة صفحات |
 
-- `scripted-brush/init.lua` — `group` + `stroke` متعددة.
-- `batch-crop/init.lua` — `crop` متكرر.
-- `watermark/init.lua` — قراءة الطبقات + `write_text`.
+- `progress/init.lua` — عدّاد صفحات على الـ layers الحالية.
+- `image-overlay/init.lua` — تحريك/تكبير/تدوير + دمج قابل للتراجع.
+- `typesetting/init.lua` — `queue.lua` + `fit.lua` لتوزيع النص بين الصناديق.
 
 > انسخ أيّاً منها وعدّله ليبني أداتك.
