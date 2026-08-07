@@ -1,114 +1,96 @@
-# HunterToon Extensions
+# متجر إضافات HunterToon
 
-**The official extension store for the HunterToon Editor app.** The app
-fetches `catalog.json` from this repository (URL via Remote Config, key
-`extensions_catalog_url`) and lets users install, update, and remove
-Lua-powered extensions from inside the app — **without any app update**.
+**هذا هو المتجر الرسمي لإضافات تطبيق محرر HunterToon.**
 
-> **بالعربية:** هذا هو مستودع متجر الإضافات الرسمي لمحرّر HunterToon.
-> التطبيق يقرأ `catalog.json` من هذا المستودع، والمستخدم يثبّت/يحدّث/يحذف
-> الإضافات من داخل التطبيق بلا أي تحديث للتطبيق. لصنع إضافة جديدة اقرأ
-> [دليل صنع الإضافات](EXTENSION_GUIDE.md) — كامل بالإنكليزية مع ملخصات
-> عربية لكل قسم.
+المحرر يقرأ هذا الفهرس (`catalog.json`) من هذا المستودع، ويعرضه داخل التطبيق في شاشة «متجر الإضافات». المستخدم يثبّت, يحدّث, ويحذف الإضافات **من داخل التطبيق مباشرة** — بدون أي تحديث للتطبيق نفسه وبدون الحاجة إلى تعديل رمز المحرر.
+
+> **English:** This is the official extension store for the HunterToon Editor app. The app reads `catalog.json` from this repository and users install / update / remove extensions from inside the app — **without any app update**. Extensions are small Lua packages (a manifest + one script) that unlock new tools and smart workflows inside the editor.
 
 ---
 
-## 📚 Documentation
+## ما الذي يمكن صنعه بإضافة؟
 
-| Doc | What it covers | بالعربية |
-|---|---|---|
-| **[EXTENSION_GUIDE.md](EXTENSION_GUIDE.md)** | The full developer handbook: index, contract, UI items, API, packaging, publishing, FAQ + sample | المرجع الكامل لصنع إضافتك الأولى |
-| **[catalog.json](catalog.json)** | The machine-readable store index (auto-generated — do not hand-edit) | فهرس المتجر (مخرَج آلي) |
-| **[tools/build_extension.ps1](tools/build_extension.ps1)** | Builds `<slug>-<version>.zip` + prints the catalog entry | يبني الأرشيف ويحسب البصمة |
-| **[tools/rebuild_catalog.ps1](tools/rebuild_catalog.ps1)** | Regenerates `catalog.json` deterministically from `packages/` | يعيد توليد الفهرس |
-| **[tools/validate_store.ps1](tools/validate_store.ps1)** | Full validation (folders, zips, hashes, internal consistency) | يفحص المتجر كاملاً |
-| **[tools/gen_icon.dart](tools/gen_icon.dart)** | Optional 32×32 icon generator (pure Dart) | مولّد أيقونات اختياري |
+الإضافة ملف صغير جداً (غالباً كيلو بايتات) يحتوي على فكرة أداة كاملة. منذ فتح منصة الإضافات (OEP) تستطيع الإضافة:
 
----
+- **التحكم بكل أدوات المحرر**: فرشاة/ماسح/فرشاة بيضاء، إصلاح (healing)، ختم (clone)، قص (crop على أقسام)، نص (إضافة/تعديل)، صورة فوق صورة.
+- **التحكم بالطبقات**: إضافة/حذف/ترتيب/شفافية/إظهار/قفل/مزج — كل تغيير قابل للتراجع.
+- **التراجع الفائق**: تنفيذ سلسلة كاملة (مثلاً 9 ضربات فرشاة) ثم تجميعها في **خطوة تراجع واحدة** — الضغط على تراجع يحذف السلسلة كلها، والإعادة تذكرها.
+- **قراءة المستند**: الإضافة ترى السياق الحالي (الصفحة، الطبقات، الأداة النشطة، حالة سجل التراجع) وتتخذ قراراتها بناءً عليه — مثل «أداة مائية» تجد طبقة النص من تلقاء نفسها ثم تطبق عليها شفافية وقفل.
+- **الحفظ والملفات**: قراءة/كتابة نص، حفظ بايتات، لصق/نسخ من الحافظة، وإشعارات مباشرة للمستخدم.
 
-## 📁 Repository structure
-
-```
-lamineheskoura/editoon-extensions
-├── catalog.json                    ← store index (auto-generated)
-├── README.md
-├── EXTENSION_GUIDE.md              ← developer handbook (EN + AR summaries)
-├── .github/workflows/validate-store.yml  ← CI validation on every push/PR
-├── tools/
-│   ├── gen_icon.dart
-│   ├── build_extension.ps1
-│   ├── rebuild_catalog.ps1
-│   └── validate_store.ps1
-└── packages/
-    ├── progress/                   ← sample extension «progress»
-    │   ├── manifest.json
-    │   ├── init.lua
-    │   ├── icon.png
-    │   └── progress-1.0.0.zip
-    └── <slug>/                     ← your extension goes here
-```
-
-**Golden rule:** `catalog.json` is a *build output* — never edit it by
-hand. One folder per extension in `packages/<slug>/`; changing an
-extension never touches anything else.
+كل الإضافات تعمل **في عزلة آمنة** بلا وصول للملفات أو الشبكة — والمستخدم يرى كل نفس ما يرى للفرشاة العادية.
 
 ---
 
-## 🚀 Quick start (3 minutes)
+## المستخدم النهائي
 
-```powershell
-# 1. create your folder (copy the progress sample)
-Copy-Item packages/progress packages/my-extension -Recurse
+1. افتح «متجر الإضافات» من الصفحة الرئيسية للتطبيق.
+2. تبويب **«المثبّتة»**: كل الإضافات المثبّتة (مدمجة / من ملف / من المتجر)، مع إمكانية إظهار/إخفاء وحذف.
+3. تبويب **«المتجر»**: كتالوج الإضافات المتاحة — زر **«تثبيت»** يحمّل ويحوّصها ويثبّتها داخل التطبيق، ومن ثم تظهر فوراً في قائمة «+» بالمحرر.
+4. زر **«تثبيت من ملف»**: للمطوّرين والمجاهر — اختيار ملف ZIP على هاتفك يُثبّت فوراً بكمالك مسار التحقق نفسه (نفس أمان التثبيت من المتجر).
 
-# 2. edit manifest.json (slug must equal the folder name) + write init.lua
-
-# 3. build the zip + regenerate + validate
-.\tools\build_extension.ps1 -Slug my-extension -Version 1.0.0
-.\tools\rebuild_catalog.ps1
-.\tools\validate_store.ps1
-
-# 4. open a PR — CI validates everything again automatically
-```
-
-Full details: **[EXTENSION_GUIDE.md](EXTENSION_GUIDE.md)**.
+تثبيت أي إضافة **مشروط بالنية** — تثبيت واحد في كل مرة، لا شيء تلقائي. الحذف بضغطة واحدة.
 
 ---
 
-## 🔒 Security & store rules
+## للمطوّرين: النشر بسرعة
 
-- Every archive is **sha256-verified** on download (tampering rejected).
-- **Path traversal** (`..`) is blocked at install time.
-- `minApi` guards compatibility — future API requests are refused on old
-  app versions.
-- Lua runs in a **sandboxed isolate with a watchdog**: no files, no
-  network, no WebView — only `api.log` / `api.emit`.
-- The catalog is **curated**: only this repo's `main` branch content is
-  served; users install explicitly, one by one.
+كل إضافة = مجلد يحوي `manifest.json` + `init.lua` (سكربت لوا) (+ أيقونة اختيارية)، يُضغط ZIP باسم `<slug>-<version>.zip`، وتُرفع إلى المتجر. تفاصيل الباقي في الملفات التالية:
 
-## ✅ Google Play compliance (why this design is acceptable)
-
-Play's policy states that *interpreted languages (JavaScript, Python,
-Lua, etc.) loaded at run time must not allow potential violations of
-Google Play policies*. Our design complies with every explicit condition:
-
-| Policy condition | Status |
+| الملف | ماذا يشرح؟ |
 |---|---|
-| No downloadable executable code (dex/so/jar) from outside Play | ✅ Lua only, runs in the bundled interpreter |
-| Only indirect access to Android APIs | ✅ Isolated sandbox, no file/network/WebView |
-| Integrity checks before loading | ✅ Mandatory sha256 + HTTPS-only downloads |
-| Downloadable code stored in app-private storage | ✅ `<docs>/extensions/<slug>/` |
-| No self-update of the app, no APK downloads | ✅ Not possible by design |
-| User consent | ✅ Explicit install per extension, one-tap removal |
+| **[EXTENSION_GUIDE.md](EXTENSION_GUIDE.md)** | المرجع الكامل لصنع إضافة: المؤنّف، القدرات، `api.*`، السياق، لوحة الواجهة، التغليف، النشر، الأسئلة الشائعة + نماذج عملية جاهزة للعرض. |
+| **[كيف تطلب AI؟](prompts/BUILD-WITH-AI.md)** | برومبت جاهز للنسخ واللصق إلى أي مساعد ذكي (ChatGPT / Claude / …) ليبني لك أداة كاملة بمواصفاتك — تنطلق من أحد النماذج الثلاثة ثم تعدّله لاحتياجك. |
+| **[catalog.json](catalog.json)** | فهرس المتجر يفهم جهازياً (يُولّد آلياً — لا يُعدّل باليد). |
+| **[tools/build_extension.ps1](tools/build_extension.ps1)** | يبني الأرشيف `<slug>-<version>.zip` ويطبع إدخال الكتالوج. |
+| **[tools/rebuild_catalog.ps1](tools/rebuild_catalog.ps1)** | يعيد توليد `catalog.json` من مجلدات `packages/`. |
+| **[tools/validate_store.ps1](tools/validate_store.ps1)** | يفحص المتجر كاملاً (المجلدات، الأرشفة، البصمات، الاتساق). |
 
 ---
 
-## 🤝 Contributing
+## هيكل المستودع
 
-1. Fork, create `packages/<slug>/` (see the guide), build + validate.
-2. Open a PR — the `validate-store` workflow runs automatically and must
-   pass (structure, hashes, deterministic catalog).
-3. After merge the extension is live in the store within minutes.
+```
+editoon-extensions
+├── catalog.json                  ← فهرس المتجر (يولَّد آلياً — لا تعدَّله باليد)
+├── README.md
+├── EXTENSION_GUIDE.md            ← المرجع الكامل (عربي + نماذج عملية)
+├── prompts/
+│   └── BUILD-WITH-AI.md          ← برومبت للبناء بـ AI (ينسخه المستخدم)
+├── .github/workflows/validate-store.yml  ← تحقق آلي (CI) عند كل تحديث
+├── tools/…                       ← أدوات البناء والتحقق
+└── packages/
+    ├── progress/                 ← عينة أولية «مؤشر التقدم»
+    ├── scripted-brush/           ← نموذج O5: فرشاة مبرمجة (مشط)
+    ├── batch-crop/               ← نموذج O5: قص بالجملة
+    └── watermark/                ← نموذج O5: علامة مائية ذكية
+```
 
-> **بالعربية:** المساهمة: افرع المستودع، أضف مجلد إضافتك، ابنِ وتحقق
-> محلياً، ثم افتح PR — CI يتحقق تلقائياً ويرفض أي خلل. بعد الدمج تصبح
-> الإضافة متاحة لكل المستخدمين فوراً.
+**القاعدة الذهبية:** `catalog.json` هو **مخرج آلي** — أعده توليداً من مجلدات `packages/` بأداة `rebuild_catalog.ps1`؛ لا تعدّله يدوياً. لكل إضافة مجلدها في `packages/<slug>/` — تغيير إضافة لا يمس سوى مجلدها.
+
+---
+
+## الأمان — سطر على سطر
+
+- كل أرشيف **يتحقق sha256** على التنزيل — العبث مرفوض.
+- **تعديل المسار** (`..`) محجوب أثناء التثبيت.
+- `minApi` يضبط التوافق — إضافات تتطلب نسخة مستقبلية ترفض بوضوح على النسخ الأقدم.
+- لوا يعمل في **صندوق معزول مع حارس زمني**: بلا ملفات، بلا شبكة، بلا WebView.
+- الكتالوج **منتقى يدوياً** (مايُرفع على هذا المستودع فقط): المستخدم يثبّت ما يريد بنفسه، واحداً واحداً.
+- الـ **CI** يفحص بنية المتجر وصحّته على كل دفع وطلب سحب.
+
+---
+
+## المساهمة
+
+1. انسخ مجلداً من `packages/` (أو اتبع `EXTENSION_GUIDE.md`) إلى `packages/<slug>/`.
+2. عدّل `manifest.json` (الـ slug مطابق لاسم المجلد) + اكتب `init.lua`.
+3. ابنِ الحزمة والمعايرة، ثم افحص:
+   ```powershell
+   .\tools\build_extension.ps1 -Slug my-extension -Version 1.0.0
+   .\tools\rebuild_catalog.ps1
+   .\tools\validate_store.ps1
+   ```
+4. افتح **Pull Request** — الـ CI يفحص كل ذلك تلقائياً، وبعد الدمج تظهر الإضافة في المتجر لجميع المستخدمين.
+
+اكتشف التفاصيل كاملة في **[EXTENSION_GUIDE.md](EXTENSION_GUIDE.md)**، أو أطلق العنان لمساعدك الذكي عبر **[prompts/BUILD-WITH-AI.md](prompts/BUILD-WITH-AI.md)**.

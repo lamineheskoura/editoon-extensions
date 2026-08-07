@@ -30,7 +30,7 @@ foreach ($slug in ($catalog.extensions | ForEach-Object { $_.slug })) {
   if (-not $m.version) { $errors += "${slug}: manifest missing version" }
   if ($null -eq $m.minApi) { $errors += "${slug}: manifest missing minApi" }
   if (-not $m.name) { $errors += "${slug}: manifest missing name" }
-  if ($m.minApi -gt 1) { $warnings += "${slug}: minApi $($m.minApi) > 1 - app will reject it" }
+  if ($m.minApi -gt 2) { $warnings += "${slug}: minApi $($m.minApi) > 2 - releases older than OEP(2) will reject it" }
 
   foreach ($f in @('init.lua')) {
     if (-not (Test-Path -LiteralPath (Join-Path $dir $f))) { $errors += "${slug}: missing $f" }

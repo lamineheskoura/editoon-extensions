@@ -6,11 +6,11 @@ param(
   [string]$Name = $Slug,
   [string]$Description = '',
   [string]$Author = 'HunterToon',
-  [int]$MinApi = 1
+  [int]$MinApi = 2
 )
 
 $ErrorActionPreference = 'Stop'
-$dir = Join-Path $PSScriptRoot '..\packages' $Slug
+$dir = Join-Path (Join-Path $PSScriptRoot '..\packages') $Slug
 if (-not (Test-Path -LiteralPath (Join-Path $dir 'manifest.json'))) {
   throw "missing $dir\manifest.json"
 }

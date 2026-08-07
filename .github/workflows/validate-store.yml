@@ -3,18 +3,25 @@ name: validate-store
 on:
   push:
     paths:
-      - 'store/**'
+      - 'packages/**'
+      - 'tools/**'
+      - 'catalog.json'
+      - 'README.md'
+      - 'EXTENSION_GUIDE.md'
+      - 'prompts/**'
   pull_request:
     paths:
-      - 'store/**'
+      - 'packages/**'
+      - 'tools/**'
+      - 'catalog.json'
+      - 'README.md'
+      - 'EXTENSION_GUIDE.md'
+      - 'prompts/**'
   workflow_dispatch:
 
 jobs:
   validate:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: store
     steps:
       - uses: actions/checkout@v4
       - name: Validate store structure and catalog
