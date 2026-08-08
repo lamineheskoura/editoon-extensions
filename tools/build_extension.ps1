@@ -18,11 +18,23 @@ if (-not (Test-Path -LiteralPath (Join-Path $dir 'manifest.json'))) {
 $zipName = "$Slug-$Version.zip"
 $zipPath = Join-Path $dir $zipName
 
-$files = @('manifest.json', 'init.lua')
-foreach ($f in @('queue.lua', 'fit.lua', 'inspect.lua', 'icon.png')) {
+$files = @('manifest.json')
+foreach ($f in @('init.lua', 'queue.lua', 'fit.lua', 'inspect.lua', 'icon.png')) {
   if (Test-Path -LiteralPath (Join-Path $dir $f)) { $files += $f }
 }
-$src = foreach ($f in $files) { Join-Path $dir $f }
+# حزم الخطوط/الصور: كل ملفات fonts/ و images/ تُضمّن في الأرشيف.
+foreach ($sub in @('fonts', 'images')) {
+  $subDir = Join-Path $dir $sub
+  if (Test-Path -LiteralPath $subDir) {
+    $files += (Get-ChildItem -LiteralPath $subDir -Recurse -File | ForEach-Object {
+      $_.FullName
+    })
+  }
+}
+$src = foreach ($f in $files) {
+  $abs = if ([System.IO.Path]::IsPathRooted($f)) { $f } else { Join-Path $dir $f }
+  $abs
+}
 
 Compress-Archive -Path $src -DestinationPath $zipPath -Force
 

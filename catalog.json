@@ -4,6 +4,20 @@
   "updatedAt": "2026-08-08",
   "extensions": [
     {
+      "slug": "cairo-arabic",
+      "name": "خطوط عربية أساسية",
+      "description": "ثلاثة خطوط عربية جاهزة (Cairo، Tajawal، Amiri) تصبح متاحة فوراً في منتقي الخطوط بعد التثبيت.",
+      "author": "HunterToon",
+      "version": "1.0.0",
+      "minApi": 1,
+      "category": "font",
+      "subcategory": "arabic",
+      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/cairo-arabic/cairo-arabic-1.0.0.zip",
+      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/cairo-arabic/icon.png",
+      "sizeBytes": 241080,
+      "sha256": "DA95CF68529FEAE12D5396063045307360FE22810F175358E3664148562DB26B"
+    },
+    {
       "slug": "image-overlay",
       "name": "صورة فوق صورة",
       "description": "وضع صورة فوق الصفحة مع تحكم كامل (تحريك/تكبير/تدوير) ودمج قابل للتراجع — إضافة HunterToon الرسمية.",

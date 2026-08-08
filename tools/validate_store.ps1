@@ -33,12 +33,21 @@ foreach ($slug in ($catalog.extensions | ForEach-Object { $_.slug })) {
   if ($m.minApi -gt 2) { $warnings += "${slug}: minApi $($m.minApi) > 2 - releases older than OEP(2) will reject it" }
 
   foreach ($f in @('init.lua')) {
+    # حزم الخطوط والصور بلا لوا — init.lua إجباري فقط للأدوات.
+    if ($m.category -eq 'font' -or $m.category -eq 'image') { break }
     if (-not (Test-Path -LiteralPath (Join-Path $dir $f))) { $errors += "${slug}: missing $f" }
   }
   $iconOk = Test-Path -LiteralPath (Join-Path $dir 'icon.png')
   $catalogEntry = $catalog.extensions | Where-Object { $_.slug -eq $slug }
   if (-not $iconOk -and $catalogEntry.iconUrl) { $warnings += "${slug}: catalog has iconUrl but no icon.png in folder" }
   if ($m.icon -and -not $iconOk) { $errors += "${slug}: manifest declares icon '$($m.icon)' but file missing" }
+
+  # حزم الخطوط: يجب أن تحوي ملفات خطوط فعلية (وإلا تثبيتها بلا فائدة).
+  if ($m.category -eq 'font') {
+    $fontFiles = Get-ChildItem -LiteralPath $dir -Recurse -File -ErrorAction SilentlyContinue |
+      Where-Object { $_.Extension -in '.ttf', '.otf' }
+    if (-not $fontFiles) { $errors += "${slug}: font pack has no .ttf/.otf files" }
+  }
 
   $zipName = "${slug}-$($m.version).zip"
   $zipPath = Join-Path $dir $zipName
