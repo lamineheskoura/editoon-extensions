@@ -50,6 +50,8 @@ Get-ChildItem -LiteralPath $packagesDir -Directory | Sort-Object Name | ForEach-
   $icon = if (Test-Path -LiteralPath (Join-Path $_.FullName 'icon.png')) { "$BaseUrl/packages/$slug/icon.png" } else { '' }
   $minApi = 1
   if ($null -ne $m.minApi) { $minApi = [int]$m.minApi }
+  $category = if ($m.category) { $m.category } else { 'tool' }
+  $subcategory = if ($m.subcategory) { $m.subcategory } else { '' }
 
   $entries += [ordered]@{
     slug        = $slug
@@ -58,6 +60,8 @@ Get-ChildItem -LiteralPath $packagesDir -Directory | Sort-Object Name | ForEach-
     author      = if ($m.author) { $m.author } else { '' }
     version     = $m.version
     minApi      = $minApi
+    category    = $category
+    subcategory = $subcategory
     archiveUrl  = "$BaseUrl/packages/$slug/$zipName"
     iconUrl     = $icon
     sizeBytes   = $zipSize
@@ -83,6 +87,8 @@ AppendLine $sb '    {'
   AppendLine $sb ('      "author": ' + (ConvertTo-JsonString $e.author) + ',')
   AppendLine $sb ('      "version": ' + (ConvertTo-JsonString $e.version) + ',')
   AppendLine $sb ("      `"minApi`": $($e.minApi),")
+  AppendLine $sb ('      "category": ' + (ConvertTo-JsonString $e.category) + ',')
+  AppendLine $sb ('      "subcategory": ' + (ConvertTo-JsonString $e.subcategory) + ',')
   AppendLine $sb ('      "archiveUrl": ' + (ConvertTo-JsonString $e.archiveUrl) + ',')
   AppendLine $sb ('      "iconUrl": ' + (ConvertTo-JsonString $e.iconUrl) + ',')
   AppendLine $sb ("      `"sizeBytes`": $($e.sizeBytes),")

@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "icon": "icon.png",
   "minApi": 1,
+  "category": "tool",
+  "subcategory": "",
   "description": "إضافة تجريبية خارجية: تتبّع إنجازك في الفصل الحالي (صفحات منجزة) مباشرة من لوحة داخل المحرر.",
   "author": "HunterToon",
   "homepage": "https://github.com/lamineheskoura/editoon-extensions",

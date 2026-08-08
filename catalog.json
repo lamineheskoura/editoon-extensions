@@ -1,7 +1,7 @@
 {
   "version": 1,
   "catalogVersion": "1.0.0",
-  "updatedAt": "2026-08-07",
+  "updatedAt": "2026-08-08",
   "extensions": [
     {
       "slug": "image-overlay",
@@ -10,10 +10,12 @@
       "author": "HunterToon",
       "version": "1.0.0",
       "minApi": 1,
+      "category": "image",
+      "subcategory": "",
       "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/image-overlay/image-overlay-1.0.0.zip",
       "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/image-overlay/icon.png",
-      "sizeBytes": 3984,
-      "sha256": "ADF41BB0DB46BFC33F0D10EFBEB6E199CEBB908221141D876B59748D45EC3813"
+      "sizeBytes": 3999,
+      "sha256": "ABA815C3037C1636E8434EACB665F3543B908FE114F7D66912DF5744B0FFEAD2"
     },
     {
       "slug": "progress",
@@ -22,10 +24,12 @@
       "author": "HunterToon",
       "version": "1.0.0",
       "minApi": 1,
+      "category": "tool",
+      "subcategory": "",
       "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/progress/progress-1.0.0.zip",
       "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/progress/icon.png",
-      "sizeBytes": 1819,
-      "sha256": "CBAC311A69A13CA474ADE51813AB80780B3CDCED5ADCF8168F5CBDAFB45319B7"
+      "sizeBytes": 1839,
+      "sha256": "9E32A63752295C99A96312C8225D1385EBB3BDF8DC9DE888EE4623B4D8EA32DF"
     },
     {
       "slug": "typesetting",
@@ -34,10 +38,12 @@
       "author": "HunterToon",
       "version": "1.0.0",
       "minApi": 1,
+      "category": "tool",
+      "subcategory": "",
       "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/typesetting/typesetting-1.0.0.zip",
       "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/typesetting/icon.png",
-      "sizeBytes": 7469,
-      "sha256": "C47178778CE5CF47ED74ADA978069615AD78118C851755C54016BAF325A79598"
+      "sizeBytes": 7486,
+      "sha256": "626B899EE75B0E5B623FCA512A3EA31CF225C0AA4F3FAB2A73AB4D9DAF6B2205"
     }
   ]
 }
