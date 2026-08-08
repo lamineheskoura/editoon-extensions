@@ -4,6 +4,20 @@
   "updatedAt": "2026-08-08",
   "extensions": [
     {
+      "slug": "bubbles-manhwa",
+      "name": "فقاعات مانهوا",
+      "description": "46 فقاعة حوار مانجا/مانهوا احترافية بأطراف حادة وخلفية شفافة تماماً — من الفقاعات العادية إلى الصراخ والهمس والتفكير، جاهزة فوراً في مكتبة الصور بعد التثبيت.",
+      "author": "HunterToon",
+      "version": "1.0.0",
+      "minApi": 1,
+      "category": "image",
+      "subcategory": "bubbles",
+      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/bubbles-manhwa/bubbles-manhwa-1.0.0.zip",
+      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/bubbles-manhwa/icon.png",
+      "sizeBytes": 1120578,
+      "sha256": "03FDB19451E287F346C79144F8748989768009811E65FC78B33B289F7865946C"
+    },
+    {
       "slug": "image-overlay",
       "name": "صورة فوق صورة",
       "description": "وضع صورة فوق الصفحة مع تحكم كامل (تحريك/تكبير/تدوير) ودمج قابل للتراجع — إضافة HunterToon الرسمية.",
