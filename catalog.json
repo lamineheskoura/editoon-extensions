@@ -4,34 +4,6 @@
   "updatedAt": "2026-08-08",
   "extensions": [
     {
-      "slug": "bubbles-arabic",
-      "name": "فقاعات حوار عربية",
-      "description": "فقاعات حوار وملحقات PNG شفافة (كلاسيكية، مستطيلة، بيضاوية، صراخ، تفكير) تُضاف فوراً إلى الصفحة من شريط خيارات أداة الصور بعد التثبيت.",
-      "author": "HunterToon",
-      "version": "1.0.0",
-      "minApi": 1,
-      "category": "image",
-      "subcategory": "bubbles",
-      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/bubbles-arabic/bubbles-arabic-1.0.0.zip",
-      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/bubbles-arabic/icon.png",
-      "sizeBytes": 51307,
-      "sha256": "901EFEB01149B52DBF57524D25AD176041DC1C860ABD1569D26B3BA58D64A602"
-    },
-    {
-      "slug": "cairo-arabic",
-      "name": "خطوط عربية أساسية",
-      "description": "ثلاثة خطوط عربية جاهزة (Cairo، Tajawal، Amiri) تصبح متاحة فوراً في منتقي الخطوط بعد التثبيت.",
-      "author": "HunterToon",
-      "version": "1.0.0",
-      "minApi": 1,
-      "category": "font",
-      "subcategory": "arabic",
-      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/cairo-arabic/cairo-arabic-1.0.0.zip",
-      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/cairo-arabic/icon.png",
-      "sizeBytes": 241080,
-      "sha256": "DA95CF68529FEAE12D5396063045307360FE22810F175358E3664148562DB26B"
-    },
-    {
       "slug": "image-overlay",
       "name": "صورة فوق صورة",
       "description": "وضع صورة فوق الصفحة مع تحكم كامل (تحريك/تكبير/تدوير) ودمج قابل للتراجع — إضافة HunterToon الرسمية.",
@@ -44,6 +16,20 @@
       "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/image-overlay/icon.png",
       "sizeBytes": 3999,
       "sha256": "ABA815C3037C1636E8434EACB665F3543B908FE114F7D66912DF5744B0FFEAD2"
+    },
+    {
+      "slug": "manhwa-arabic",
+      "name": "خطوط مانهوا عربية",
+      "description": "أشهر 16 خطاً عربياً مستعملاً في ترجمة وتحرير المانجا والمانهوا — من النسخ والرقعة والديواني إلى خطوط الحوار الحديثة، متاحة فوراً في منتقي الخطوط بعد التثبيت.",
+      "author": "HunterToon",
+      "version": "1.0.0",
+      "minApi": 1,
+      "category": "font",
+      "subcategory": "arabic",
+      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/manhwa-arabic/manhwa-arabic-1.0.0.zip",
+      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/manhwa-arabic/icon.png",
+      "sizeBytes": 1158132,
+      "sha256": "6ADCABBD124E4C155EF0DE0B1BD610A46330CC648943AF1EAC086F769618B813"
     },
     {
       "slug": "progress",
