@@ -4,6 +4,20 @@
   "updatedAt": "2026-08-08",
   "extensions": [
     {
+      "slug": "bubbles-arabic",
+      "name": "فقاعات حوار عربية",
+      "description": "فقاعات حوار وملحقات PNG شفافة (كلاسيكية، مستطيلة، بيضاوية، صراخ، تفكير) تُضاف فوراً إلى الصفحة من شريط خيارات أداة الصور بعد التثبيت.",
+      "author": "HunterToon",
+      "version": "1.0.0",
+      "minApi": 1,
+      "category": "image",
+      "subcategory": "bubbles",
+      "archiveUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/bubbles-arabic/bubbles-arabic-1.0.0.zip",
+      "iconUrl": "https://raw.githubusercontent.com/lamineheskoura/editoon-extensions/main/packages/bubbles-arabic/icon.png",
+      "sizeBytes": 51307,
+      "sha256": "901EFEB01149B52DBF57524D25AD176041DC1C860ABD1569D26B3BA58D64A602"
+    },
+    {
       "slug": "cairo-arabic",
       "name": "خطوط عربية أساسية",
       "description": "ثلاثة خطوط عربية جاهزة (Cairo، Tajawal، Amiri) تصبح متاحة فوراً في منتقي الخطوط بعد التثبيت.",

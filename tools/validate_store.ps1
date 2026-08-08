@@ -48,6 +48,12 @@ foreach ($slug in ($catalog.extensions | ForEach-Object { $_.slug })) {
       Where-Object { $_.Extension -in '.ttf', '.otf' }
     if (-not $fontFiles) { $errors += "${slug}: font pack has no .ttf/.otf files" }
   }
+  # حزم الصور: يجب أن تحوي ملفات صور فعلية (وإلا تثبيتها بلا فائدة).
+  if ($m.category -eq 'image') {
+    $imageFiles = Get-ChildItem -LiteralPath $dir -Recurse -File -ErrorAction SilentlyContinue |
+      Where-Object { $_.Extension -in '.png', '.webp', '.jpg', '.jpeg' }
+    if (-not $imageFiles) { $errors += "${slug}: image pack has no .png/.webp/.jpg/.jpeg files" }
+  }
 
   $zipName = "${slug}-$($m.version).zip"
   $zipPath = Join-Path $dir $zipName
